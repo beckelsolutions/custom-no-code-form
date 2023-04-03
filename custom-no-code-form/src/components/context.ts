@@ -12,11 +12,3 @@ export interface DynamicInputPropsObject {
 }
 
 export const InputPropsCtx = createContext<DynamicInputPropsObject>({})
-
-// export const useInputProps = create<UseInputProps>(set => ({
-//     props: {},
-//     setProps: (props: InputInformationFromFramer[]) => set(state => {
-//         props.forEach(it => state.props[it.name] = { label: it.label, inputType: it.inputType, required: it.required })
-//         return state;
-//     }),
-// }));

@@ -7,5 +7,4 @@ export const CustomFormStyle: CSSProperties = {
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
-    gap: '8px',
 }

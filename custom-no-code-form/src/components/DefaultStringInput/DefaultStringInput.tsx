@@ -1,11 +1,13 @@
 import { useTsController } from '@ts-react/form';
-import { ChangeEvent, useContext, useEffect, useState } from 'react';
+import { ChangeEvent, useContext } from 'react';
 import { InputPropsCtx } from '../context';
-import StyledDefaultInput from './DefaultInput.style';
+import { StyledDefaultStringInput } from './DefaultStringInput.style';
+import { DefaultInputStyle } from '../types';
 
-export function DefaultInput() {
-    try
-    {
+export interface DefaultStringInputProps extends DefaultInputStyle {}
+
+export function DefaultStringInput(props: DefaultStringInputProps) {
+    try {
         const {
             field: { name, onChange },
             error
@@ -28,19 +30,18 @@ export function DefaultInput() {
         }
 
         return (
-            <StyledDefaultInput>
+            <StyledDefaultStringInput {...props} error={!!error}>
                 {inputJsx}
                 {!!error && !!error.errorMessage && error.errorMessage.length > 0 &&
                     <span>{error.errorMessage}</span>}
-            </StyledDefaultInput>
+            </StyledDefaultStringInput>
         );
-    }
-    catch {
+    } catch {
         return (
-            <StyledDefaultInput>
+            <StyledDefaultStringInput {...props} error={false}>
                 <input type="text" placeholder="Placeholder" />
                 <span>Errortext Example</span>
-            </StyledDefaultInput>
+            </StyledDefaultStringInput>
         )
     }
 }

@@ -4,16 +4,22 @@ import { z } from 'zod';
 import { DynamicInputPropsObject, InputProps, InputPropsCtx } from '../context';
 import { CustomFormStyle } from './CustomForm.style';
 import { InputInformationFromFramer, StyleInformationFromFramer } from './CustomForm.types';
+import { dropdownSchema } from './dropdownSchema';
 import { zodSchema } from './zodSchema';
 
 interface CustomFormProps {
     textInput: ReactElement;
     numberInput: ReactElement;
     booleanInput: ReactElement;
+    dropdownInput: ReactElement;
     submitButton: ReactElement;
     inputs: InputInformationFromFramer[]
     style: StyleInformationFromFramer;
     sendTo: string;
+    messages: {
+        success: string;
+        error: string;
+    }
 }
 
 /**
@@ -22,15 +28,24 @@ interface CustomFormProps {
  */
 export function CustomForm(props: CustomFormProps) {
     const inputMapping = [
-        [z.string(), () => props.textInput],
-        [z.boolean(), () => props.booleanInput],
-        [z.number(), () => props.numberInput]
+        [z.string(), () => props.textInput] as const,
+        [z.boolean(), () => props.booleanInput] as const,
+        [z.number(), () => props.numberInput] as const,
+        [dropdownSchema({ required_error: '' }), () => props.dropdownInput] as const
     ] as const;
     const MyForm = createTsForm(inputMapping);
 
     const submit = (data: any) => {
-        console.log("Hey");
-    };
+        fetch(props.sendTo, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+            body: JSON.stringify(data),
+        })
+            .then(() => alert(props.messages.success))
+            .catch(() => alert(props.messages.error))
+    }
 
     const inputProps: DynamicInputPropsObject = props.inputs.reduce(
         (newInputProps: DynamicInputPropsObject, currentInput) => {
@@ -58,7 +73,7 @@ export function CustomForm(props: CustomFormProps) {
                             })
                         })
                     }
-                    formProps={{ style: CustomFormStyle }}
+                    formProps={{ style: { ...CustomFormStyle, gap: props.style.gap } }}
                 />
             </InputPropsCtx.Provider>
         </div>

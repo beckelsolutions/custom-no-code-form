@@ -7,7 +7,7 @@ export interface InputInformationFromFramer {
     emailInvalidMessage: string;
 }
 
-export type InputTypes = "text" | "multiline text" | "number" | "boolean" | "e-mail";
+export type InputTypes = 'text' | 'multiline text' | 'number' | 'boolean' | 'e-mail'  | 'dropdown';
 
 export interface StyleInformationFromFramer {
     gap: number;
