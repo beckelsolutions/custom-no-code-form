@@ -15,29 +15,41 @@ export interface DefaultBooleanInputProps {
 }
 
 function DefaultBooleanInput(props: DefaultBooleanInputProps) {
-    const {
-        field: { onChange, value, name },
-        error,
-    } = useTsController<boolean>()
-    const inputProps = useContext(InputPropsCtx)[name];
+    try {
+        const {
+            field: { onChange, value, name },
+            error,
+        } = useTsController<boolean>()
+        const inputProps = useContext(InputPropsCtx)[name];
 
-    return (
-        <StyledDefaultBooleanInput
-            {...props}
-            error={!!error}
-            onClick={() => onChange(value === true ? undefined : true)}
-        >
-            <label>
-                <input type="checkbox" checked={value} />
-                {inputProps.label}
-            </label>
-            {!!error &&
-                !!error.errorMessage &&
-                error.errorMessage.length > 0 && (
-                    <span>{error.errorMessage}</span>
-                )}
-        </StyledDefaultBooleanInput>
-    )
+        return (
+            <StyledDefaultBooleanInput
+                {...props}
+                error={!!error}
+                onClick={() => onChange(value === true ? undefined : true)}
+            >
+                <label>
+                    <input type="checkbox" checked={value} />
+                    {inputProps.label}
+                </label>
+                {!!error &&
+                    !!error.errorMessage &&
+                    error.errorMessage.length > 0 && (
+                        <span>{error.errorMessage}</span>
+                    )}
+            </StyledDefaultBooleanInput>
+        );
+    } catch {
+        return (
+            <StyledDefaultBooleanInput {...props} error={false}>
+                <label>
+                    <input type="checkbox" checked={false} />
+                    Labeltext Example
+                </label>
+                <span>Errortext Example</span>
+            </StyledDefaultBooleanInput>
+        );
+    }
 }
 
 export { DefaultBooleanInput };
