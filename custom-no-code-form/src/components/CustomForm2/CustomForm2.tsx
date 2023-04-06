@@ -33,11 +33,11 @@ export function CustomForm2(props: CustomForm2Props) {
                 const subScheme = inputProps.inputs.reduce(
                     (s: any, currentSubInput: ReactElement) => {
                         const subInputProps = currentSubInput.props.children.props;
-                        s[inputProps.name] = getZodValidationTypeMethod(
-                            inputProps.inputType,
-                            inputProps.required,
-                            inputProps.requiredMessage,
-                            inputProps.invalidMessage
+                        s[subInputProps.name] = getZodValidationTypeMethod(
+                            subInputProps.inputType,
+                            subInputProps.required,
+                            subInputProps.requiredMessage,
+                            subInputProps.invalidMessage
                         );
                         return s;
                     }
