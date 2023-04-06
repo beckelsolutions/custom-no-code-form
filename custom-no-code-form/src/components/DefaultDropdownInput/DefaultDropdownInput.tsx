@@ -8,6 +8,10 @@ export interface DefaultDropdownInputProps extends DefaultInputStyle {
     options: string[];
 }
 
+/**
+ * @framerSupportedLayoutWidth any
+ * @framerSupportedLayoutHeight any
+ */
 function DefaultDropdownInput(props: DefaultDropdownInputProps) {
     try {
         const {

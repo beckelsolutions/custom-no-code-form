@@ -14,6 +14,10 @@ export interface DefaultBooleanInputProps {
     }
 }
 
+/**
+ * @framerSupportedLayoutWidth any
+ * @framerSupportedLayoutHeight any
+ */
 function DefaultBooleanInput(props: DefaultBooleanInputProps) {
     try {
         const {

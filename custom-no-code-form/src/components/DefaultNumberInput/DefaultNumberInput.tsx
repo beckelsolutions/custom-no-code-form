@@ -10,6 +10,10 @@ export interface DefaultNumberInputProps extends DefaultInputStyle {
     min: number;
 }
 
+/**
+ * @framerSupportedLayoutWidth any
+ * @framerSupportedLayoutHeight any
+ */
 export function DefaultNumberInput(props: DefaultNumberInputProps) {
     try {
         const {

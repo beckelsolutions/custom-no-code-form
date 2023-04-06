@@ -6,6 +6,10 @@ import { DefaultInputStyle } from '../types';
 
 export interface DefaultStringInputProps extends DefaultInputStyle {}
 
+/**
+ * @framerSupportedLayoutWidth any
+ * @framerSupportedLayoutHeight any
+ */
 export function DefaultStringInput(props: DefaultStringInputProps) {
     try {
         const {
