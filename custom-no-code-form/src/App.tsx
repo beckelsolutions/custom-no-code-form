@@ -12,6 +12,7 @@ function App() {
     // dummy props, will be set by framer user.
     const textInput: ReactElement = <DefaultStringInput
         name={'string1'}
+        required={true}
         inputType={'text'}
         padding={'15px 15px'}
         gap={5}
@@ -87,6 +88,7 @@ function App() {
 
     const numberInput: ReactElement = <DefaultNumberInput
         name={'number1'}
+        required={true}
         inputType={'number'}
         min={0}
         max={100}
@@ -164,6 +166,7 @@ function App() {
 
     const dropdownInput = <DefaultDropdownInput
         name={'dropdown1'}
+        required={true}
         inputType={'dropdown'}
         padding={'15px 15px'}
         gap={5}
@@ -240,6 +243,7 @@ function App() {
 
     const booleanInput = <DefaultBooleanInput
         name={'boolean1'}
+        required={true}
         inputType={'boolean'}
         width={24}
         height={24}
@@ -252,6 +256,7 @@ function App() {
 
     const button = <DefaultButton
         name={'button'}
+        required={true}
         inputType={'button'}
         text={'Absenden'}
         padding={'15px 15px'}

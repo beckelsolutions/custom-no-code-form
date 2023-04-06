@@ -3,6 +3,7 @@ export type InputTypes = 'text' | 'multiline text' | 'number' | 'boolean' | 'e-m
 export interface InputInformation {
     inputType: InputTypes;
     name: string;
+    required: boolean;
     requiredErrorMessage?: string;
     invalidErrorMessage?: string;
 }
