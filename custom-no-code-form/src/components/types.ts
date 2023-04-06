@@ -1,3 +1,9 @@
+export type InputTypes = 'text' | 'multiline text' | 'number' | 'boolean' | 'e-mail'  | 'dropdown' | 'container';
+
+export interface InputType {
+    inputType: InputTypes;
+}
+
 export interface DefaultInputStyle {
     padding: string;
     gap: number;

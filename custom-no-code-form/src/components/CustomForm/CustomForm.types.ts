@@ -1,3 +1,5 @@
+import { InputTypes } from '../types';
+
 export interface InputInformationFromFramer {
     name: string;
     label: string;
@@ -6,8 +8,6 @@ export interface InputInformationFromFramer {
     errorMessage: string;
     emailInvalidMessage: string;
 }
-
-export type InputTypes = 'text' | 'multiline text' | 'number' | 'boolean' | 'e-mail'  | 'dropdown';
 
 export interface StyleInformationFromFramer {
     gap: number;
