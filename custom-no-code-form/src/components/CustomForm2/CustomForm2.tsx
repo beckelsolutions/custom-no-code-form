@@ -78,8 +78,8 @@ export function CustomForm2(props: CustomForm2Props) {
     // );
 
     return (
-        <div>
-            First version of new Custom Form. Placeholder text.
-        </div>
+        <form>
+            {props.inputs.map(input => input)}
+        </form>
     );
 }
