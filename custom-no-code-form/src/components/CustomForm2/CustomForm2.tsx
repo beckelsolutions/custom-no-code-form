@@ -25,13 +25,11 @@ interface CustomForm2Props {
  * @framerSupportedLayoutHeight any
  */
 export function CustomForm2(props: CustomForm2Props) {
-
-    console.log('inputs', props.inputs)
-
     const scheme = props.inputs.reduce(
         (newScheme: any, currentInput) => {
             const inputProps = currentInput.props.children.props;
             if (inputProps.inputType === 'container') {
+                console.log('subInputProps', inputProps);
                 const subScheme = inputProps.inputs.reduce(
                     (s: any, currentSubInput: ReactElement) => {
                         const subInputProps = currentSubInput.props.children.props;
