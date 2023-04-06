@@ -1,10 +1,10 @@
 import { useTsController } from '@ts-react/form';
 import { useContext } from 'react';
 import { InputPropsCtx } from '../context';
-import { DefaultInputStyle } from '../types';
+import { InputInformation } from '../types';
 import { StyledDefaultBooleanInput } from './DefaultBooleanInput.style';
 
-export interface DefaultBooleanInputProps {
+export interface DefaultBooleanInputProps extends InputInformation {
     width: number;
     height: number;
     font: {

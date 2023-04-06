@@ -1,7 +1,8 @@
-export type InputTypes = 'text' | 'multiline text' | 'number' | 'boolean' | 'e-mail'  | 'dropdown' | 'container';
+export type InputTypes = 'text' | 'multiline text' | 'number' | 'boolean' | 'e-mail'  | 'dropdown' | 'button' | 'container';
 
-export interface InputType {
+export interface InputInformation {
     inputType: InputTypes;
+    name: string;
 }
 
 export interface DefaultInputStyle {

@@ -1,8 +1,8 @@
 import { ReactElement } from 'react';
-import { InputType } from '../types';
+import { InputInformation } from '../types';
 import { StyledInputsContainer } from './InputsContainer.style';
 
-interface InputsContainerProps extends InputType {
+interface InputsContainerProps extends InputInformation {
     inputs: ReactElement[];
     gap: number;
 }

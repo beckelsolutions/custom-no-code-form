@@ -2,9 +2,9 @@ import { useTsController } from '@ts-react/form';
 import { ChangeEvent, useContext } from 'react';
 import { InputPropsCtx } from '../context';
 import { StyledDefaultStringInput } from './DefaultStringInput.style';
-import { DefaultInputStyle } from '../types';
+import { DefaultInputStyle, InputInformation } from '../types';
 
-export interface DefaultStringInputProps extends DefaultInputStyle {}
+export interface DefaultStringInputProps extends DefaultInputStyle, InputInformation {}
 
 /**
  * @framerSupportedLayoutWidth any

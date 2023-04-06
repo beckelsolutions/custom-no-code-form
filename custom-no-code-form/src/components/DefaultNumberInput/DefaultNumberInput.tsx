@@ -2,10 +2,10 @@ import { useTsController } from '@ts-react/form';
 import { ChangeEvent, useContext } from 'react';
 import { InputPropsCtx } from '../context';
 import { StyledDefaultStringInput } from '../DefaultStringInput/DefaultStringInput.style';
-import { DefaultInputStyle } from '../types';
+import { DefaultInputStyle, InputInformation } from '../types';
 import { StyledDefaultNumberInput } from './DefaultNumberInput.style';
 
-export interface DefaultNumberInputProps extends DefaultInputStyle {
+export interface DefaultNumberInputProps extends DefaultInputStyle, InputInformation {
     max: number;
     min: number;
 }

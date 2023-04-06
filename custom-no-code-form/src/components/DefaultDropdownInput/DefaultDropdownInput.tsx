@@ -1,10 +1,10 @@
 import { useTsController } from '@ts-react/form';
 import { useContext } from 'react';
 import { InputPropsCtx } from '../context';
-import { DefaultInputStyle } from '../types';
+import { DefaultInputStyle, InputInformation } from '../types';
 import { StyledDefaultDropdownInput } from './DefaultDropdownInput.style';
 
-export interface DefaultDropdownInputProps extends DefaultInputStyle {
+export interface DefaultDropdownInputProps extends DefaultInputStyle, InputInformation {
     options: string[];
 }
 

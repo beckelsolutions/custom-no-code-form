@@ -1,6 +1,7 @@
 import { ReactElement } from 'react';
 import StyledApp from './App.style';
 import { CustomForm } from './components/CustomForm/CustomForm';
+import { CustomForm2 } from './components/CustomForm2/CustomForm2';
 import { DefaultBooleanInput } from './components/DefaultBooleanInput/DefaultBooleanInput';
 import { DefaultButton } from './components/DefaultButton/DefaultButton';
 import { DefaultDropdownInput } from './components/DefaultDropdownInput/DefaultDropdownInput';
@@ -10,6 +11,8 @@ import { DefaultStringInput } from './components/DefaultStringInput/DefaultStrin
 function App() {
     // dummy props, will be set by framer user.
     const textInput: ReactElement = <DefaultStringInput
+        name={'string1'}
+        inputType={'text'}
         padding={'15px 15px'}
         gap={5}
         fillColor={'lightgray'}
@@ -83,6 +86,8 @@ function App() {
     />;
 
     const numberInput: ReactElement = <DefaultNumberInput
+        name={'number1'}
+        inputType={'number'}
         min={0}
         max={100}
         padding={'15px 15px'}
@@ -158,6 +163,8 @@ function App() {
     />;
 
     const dropdownInput = <DefaultDropdownInput
+        name={'dropdown1'}
+        inputType={'dropdown'}
         padding={'15px 15px'}
         gap={5}
         fillColor={'lightgray'}
@@ -232,6 +239,8 @@ function App() {
     />
 
     const booleanInput = <DefaultBooleanInput
+        name={'boolean1'}
+        inputType={'boolean'}
         width={24}
         height={24}
         font={{
@@ -242,6 +251,8 @@ function App() {
     />
 
     const button = <DefaultButton
+        name={'button'}
+        inputType={'button'}
         text={'Absenden'}
         padding={'15px 15px'}
         fillColor={'lightgray'}
@@ -274,61 +285,67 @@ function App() {
 
     return (
         <StyledApp>
-            <CustomForm
-                textInput={textInput}
-                numberInput={numberInput}
-                booleanInput={booleanInput}
-                dropdownInput={dropdownInput}
-                submitButton={button}
-                inputs={[
-                    {
-                        name: "email",
-                        label: "E-Mail",
-                        inputType: 'e-mail',
-                        required: true,
-                        errorMessage: "Error",
-                        emailInvalidMessage: ""
-                    },
-                    {
-                        name: "age",
-                        label: "Alter",
-                        inputType: 'number',
-                        required: true,
-                        errorMessage: "Bitte gib ein Alter an.",
-                        emailInvalidMessage: ""
-                    },
-                    {
-                        name: "dropdown",
-                        label: "Bitte auswählen",
-                        inputType: 'dropdown',
-                        required: true,
-                        errorMessage: "Error",
-                        emailInvalidMessage: ""
-                    },
-                    {
-                        name: "message",
-                        label: "Nachricht",
-                        inputType: 'multiline text',
-                        required: true,
-                        errorMessage: "Bitte hinterlasse eine Nachricht.",
-                        emailInvalidMessage: ""
-                    },
-                    {
-                        name: "privacyChecked",
-                        label: "Ich akzeptiere die Datenschutzregelung.",
-                        inputType: 'boolean',
-                        required: true,
-                        errorMessage: "Bitte akzeptiere die Datenschutzregelung.",
-                        emailInvalidMessage: ""
-                    },
-                ]}
-                style={{ gap: 8 }}
-                sendTo={"https://formspree.io/f/xpznvyvp"}
-                messages={{
-                    success: "Erfolgreich!",
-                    error: "Fehler!"
-                }}
+            <CustomForm2
+                inputs={[textInput, numberInput, booleanInput]}
+                style={{ gap: 15 }}
+                sendTo={''}
+                messages={{ success: '', error: '' }}
             />
+            {/*<CustomForm*/}
+            {/*    textInput={textInput}*/}
+            {/*    numberInput={numberInput}*/}
+            {/*    booleanInput={booleanInput}*/}
+            {/*    dropdownInput={dropdownInput}*/}
+            {/*    submitButton={button}*/}
+            {/*    inputs={[*/}
+            {/*        {*/}
+            {/*            name: "email",*/}
+            {/*            label: "E-Mail",*/}
+            {/*            inputType: 'e-mail',*/}
+            {/*            required: true,*/}
+            {/*            errorMessage: "Error",*/}
+            {/*            emailInvalidMessage: ""*/}
+            {/*        },*/}
+            {/*        {*/}
+            {/*            name: "age",*/}
+            {/*            label: "Alter",*/}
+            {/*            inputType: 'number',*/}
+            {/*            required: true,*/}
+            {/*            errorMessage: "Bitte gib ein Alter an.",*/}
+            {/*            emailInvalidMessage: ""*/}
+            {/*        },*/}
+            {/*        {*/}
+            {/*            name: "dropdown",*/}
+            {/*            label: "Bitte auswählen",*/}
+            {/*            inputType: 'dropdown',*/}
+            {/*            required: true,*/}
+            {/*            errorMessage: "Error",*/}
+            {/*            emailInvalidMessage: ""*/}
+            {/*        },*/}
+            {/*        {*/}
+            {/*            name: "message",*/}
+            {/*            label: "Nachricht",*/}
+            {/*            inputType: 'multiline text',*/}
+            {/*            required: true,*/}
+            {/*            errorMessage: "Bitte hinterlasse eine Nachricht.",*/}
+            {/*            emailInvalidMessage: ""*/}
+            {/*        },*/}
+            {/*        {*/}
+            {/*            name: "privacyChecked",*/}
+            {/*            label: "Ich akzeptiere die Datenschutzregelung.",*/}
+            {/*            inputType: 'boolean',*/}
+            {/*            required: true,*/}
+            {/*            errorMessage: "Bitte akzeptiere die Datenschutzregelung.",*/}
+            {/*            emailInvalidMessage: ""*/}
+            {/*        },*/}
+            {/*    ]}*/}
+            {/*    style={{ gap: 8 }}*/}
+            {/*    sendTo={"https://formspree.io/f/xpznvyvp"}*/}
+            {/*    messages={{*/}
+            {/*        success: "Erfolgreich!",*/}
+            {/*        error: "Fehler!"*/}
+            {/*    }}*/}
+            {/*/>*/}
         </StyledApp>
     )
 }
