@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { InputTypes } from './CustomForm/CustomForm.types';
+import { InputTypes } from './types';
 
 export interface InputProps {
     label: string;

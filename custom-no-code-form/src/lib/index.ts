@@ -3,4 +3,5 @@ export { DefaultNumberInput } from "../components/DefaultNumberInput/DefaultNumb
 export { DefaultDropdownInput } from "../components/DefaultDropdownInput/DefaultDropdownInput";
 export { DefaultBooleanInput } from "../components/DefaultBooleanInput/DefaultBooleanInput";
 export { DefaultButton } from "../components/DefaultButton/DefaultButton";
+export { InputsContainer } from "../components/InputsContainer/InputsContainer";
 export { CustomForm } from "../components/CustomForm/CustomForm";

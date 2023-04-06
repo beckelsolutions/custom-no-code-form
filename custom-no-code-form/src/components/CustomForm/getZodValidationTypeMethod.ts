@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { InputTypes } from './CustomForm.types';
+import { InputTypes } from '../types';
 import { dropdownSchema } from './dropdownSchema';
 
 export const getZodValidationTypeMethod = (

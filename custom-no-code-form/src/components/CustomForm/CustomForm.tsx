@@ -1,7 +1,7 @@
 import { createTsForm } from '@ts-react/form';
-import { Children, cloneElement, ReactElement, useEffect } from 'react';
+import { Children, cloneElement, ReactElement } from 'react';
 import { z } from 'zod';
-import { DynamicInputPropsObject, InputProps, InputPropsCtx } from '../context';
+import { DynamicInputPropsObject, InputPropsCtx } from '../context';
 import { CustomFormStyle } from './CustomForm.style';
 import { InputInformationFromFramer, StyleInformationFromFramer } from './CustomForm.types';
 import { dropdownSchema } from './dropdownSchema';
