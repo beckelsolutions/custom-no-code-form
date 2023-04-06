@@ -25,21 +25,27 @@ interface CustomForm2Props {
  * @framerSupportedLayoutHeight any
  */
 export function CustomForm2(props: CustomForm2Props) {
-    // const inputMapping = [
-    //     [z.string(), () => props.textInput] as const,
-    //     [z.boolean(), () => props.booleanInput] as const,
-    //     [z.number(), () => props.numberInput] as const,
-    //     [dropdownSchema({ required_error: '' }), () => props.dropdownInput] as const
-    // ] as const;
-    // const MyForm = createTsForm(inputMapping);
 
     console.log('inputs', props.inputs)
 
     const scheme = props.inputs.reduce(
         (newScheme: any, currentInput) => {
             const inputProps = currentInput.props.children.props;
-            if (inputProps.inputType === 'container') return newScheme;
-            console.log('inputProps', inputProps);
+            if (inputProps.inputType === 'container') {
+                const subScheme = inputProps.inputs.reduce(
+                    (s: any, currentSubInput: ReactElement) => {
+                        const subInputProps = currentSubInput.props.children.props;
+                        s[inputProps.name] = getZodValidationTypeMethod(
+                            inputProps.inputType,
+                            inputProps.required,
+                            inputProps.requiredMessage,
+                            inputProps.invalidMessage
+                        );
+                        return s;
+                    }
+                );
+                return {...newScheme, ...subScheme};
+            }
             newScheme[inputProps.name] = getZodValidationTypeMethod(
                 inputProps.inputType,
                 inputProps.required,
@@ -64,18 +70,6 @@ export function CustomForm2(props: CustomForm2Props) {
             .then(() => alert(props.messages.success))
             .catch(() => alert(props.messages.error))
     }
-
-    // const inputProps: DynamicInputPropsObject = props.inputs.reduce(
-    //     (newInputProps: DynamicInputPropsObject, currentInput) => {
-    //         newInputProps[currentInput.name] = {
-    //             label: currentInput.label,
-    //             inputType: currentInput.inputType,
-    //             required: currentInput.required
-    //         }
-    //         return newInputProps;
-    //     },
-    //     {} as DynamicInputPropsObject
-    // );
 
     return (
         <form>
