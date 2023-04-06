@@ -39,6 +39,7 @@ export function CustomForm2(props: CustomForm2Props) {
         (newScheme: any, currentInput) => {
             const inputProps = currentInput.props.children.props;
             if (inputProps.inputType === 'container') return newScheme;
+            console.log('inputProps', inputProps);
             newScheme[inputProps.name] = getZodValidationTypeMethod(
                 inputProps.inputType,
                 inputProps.required,
