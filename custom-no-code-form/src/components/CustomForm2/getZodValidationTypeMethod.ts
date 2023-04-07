@@ -8,7 +8,7 @@ export const getZodValidationTypeMethod = (
     requiredMessage?: string,
     invalidMessage?: string
 ) => {
-    console.log('type', type);
+    console.log('type in zod validation', type);
     switch (type) {
         case 'text':
             return required
