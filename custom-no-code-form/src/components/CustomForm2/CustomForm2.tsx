@@ -29,31 +29,33 @@ export function CustomForm2(props: CustomForm2Props) {
         (newScheme: any, currentInput) => {
             const inputProps = currentInput.props.children.props;
             if (inputProps.inputType === 'container') {
-                return newScheme;
-                // console.log('inputs props of container', inputProps);
-                // const subScheme = inputProps.inputs.reduce(
-                //     (s: any, currentSubInput: ReactElement) => {
-                //         const subInputProps = currentSubInput.props.children.props;
-                //         console.log('subInputProps', subInputProps);
-                //         console.log('values',
-                //             {
-                //                 name: subInputProps.name,
-                //                 inputType: subInputProps.inputType,
-                //                 required: subInputProps.required,
-                //                 requiredMessage: subInputProps.requiredMessage,
-                //                 invalidMessage: subInputProps.invalidMessage
-                //             });
-                //         s[subInputProps.name] = getZodValidationTypeMethod(
-                //             subInputProps.inputType,
-                //             subInputProps.required,
-                //             subInputProps.requiredMessage,
-                //             subInputProps.invalidMessage
-                //         );
-                //         return s;
-                //     },
-                //     {}
-                // );
-                // return { ...newScheme, ...subScheme };
+                console.log('inputs props of container', inputProps);
+                const subScheme = inputProps.inputs.reduce(
+                    (s: any, currentSubInput: ReactElement) => {
+                        const subInputProps = currentSubInput.props.children.props;
+                        console.log('subInputProps', subInputProps);
+                        console.log('values',
+                            {
+                                name: subInputProps.name,
+                                inputType: subInputProps.inputType,
+                                required: subInputProps.required,
+                                requiredMessage: subInputProps.requiredMessage,
+                                invalidMessage: subInputProps.invalidMessage
+                            });
+                        s[subInputProps.name] = getZodValidationTypeMethod(
+                            subInputProps.inputType,
+                            subInputProps.required,
+                            subInputProps.requiredMessage,
+                            subInputProps.invalidMessage
+                        );
+                        return s;
+                    },
+                    {}
+                );
+                console.log('subScheme', subScheme);
+                console.log('newScheme', newScheme);
+                console.log('fusion', { ...newScheme, ...subScheme });
+                return { ...newScheme, ...subScheme };
             }
             newScheme[inputProps.name] = getZodValidationTypeMethod(
                 inputProps.inputType,
