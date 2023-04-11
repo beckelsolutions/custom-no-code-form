@@ -2,7 +2,7 @@
   "name": "custom-no-code-form",
   "description": "A custom no-code form developed and designed for Framer.com",
   "author": "Nikolas Beckel <info@beckelsolutions.de> (https://beckelsolutions.de)",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "repository": "https://github.com/beckelsolutions/custom-no-code-form",
   "bugs": "https://github.com/beckelsolutions/custom-no-code-form/issues",
   "publishConfig": {
