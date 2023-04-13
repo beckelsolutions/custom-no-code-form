@@ -37,7 +37,7 @@ export const getZodValidationTypeMethod = (
                 z.number().optional()
         case 'boolean':
             return required
-                ? z.boolean({ required_error: requiredMessage ?? defaultRequiredMessage })
+                ? z.literal<boolean>(true, { required_error: requiredMessage ?? defaultRequiredMessage })
                 : z.boolean().optional()
         case 'e-mail':
             return required
