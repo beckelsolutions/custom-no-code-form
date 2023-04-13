@@ -9,6 +9,11 @@ export interface InputInformation {
     invalidErrorMessage?: string;
 }
 
+export interface ButtonInformation {
+    inputType: InputTypes;
+    text: string;
+}
+
 export interface DefaultInputStyle {
     padding: string;
     gap: number;

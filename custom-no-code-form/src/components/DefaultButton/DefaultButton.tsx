@@ -1,8 +1,7 @@
-import { BorderStyle, BorderWithRadiusStyle, InputInformation } from '../types';
+import { BorderStyle, BorderWithRadiusStyle, ButtonInformation } from '../types';
 import { StyledDefaultButton } from './DefaultButton.style';
 
-interface DefaultButtonProps extends InputInformation {
-    text: string;
+interface DefaultButtonProps extends ButtonInformation {
     padding: string;
     fillColor: string;
     font: {

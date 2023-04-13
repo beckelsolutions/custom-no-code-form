@@ -259,9 +259,6 @@ function App() {
     />
 
     const button = <DefaultButton
-        label={'Label'}
-        name={'button'}
-        required={true}
         inputType={'button'}
         text={'Absenden'}
         padding={'15px 15px'}
