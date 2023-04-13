@@ -1,5 +1,7 @@
+import { ErrorMessage } from '@hookform/error-message';
 import { useTsController } from '@ts-react/form';
 import { ChangeEvent, useContext } from 'react';
+import { useFormContext } from 'react-hook-form';
 import { InputPropsCtx } from '../context';
 import { StyledDefaultStringInput } from './DefaultStringInput.style';
 import { DefaultInputStyle, InputInformation } from '../types';
@@ -12,32 +14,28 @@ export interface DefaultStringInputProps extends DefaultInputStyle, InputInforma
  */
 export function DefaultStringInput(props: DefaultStringInputProps) {
     try {
-        const {
-            field: { name, onChange },
-            error
-        } = useTsController<string>();
-        const inputProps = useContext(InputPropsCtx)[name];
+        // const {
+        //     field: { name, onChange },
+        //     error
+        // } = useTsController<string>();
+        // const inputProps = useContext(InputPropsCtx)[name];
+        const { register, formState: { errors } } = useFormContext();
 
         const stringInputProps = {
+            ...register(props.name),
             type: "text",
-            name: name,
-            placeholder: inputProps.label + (inputProps.required ? " *" : ""),
-            onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-                const value = e.target.value
-                onChange(value.length > 0 ? value : undefined)
-            }
+            placeholder: props.label + (props.required ? " *" : ""),
         }
 
         let inputJsx = <input {...stringInputProps} />;
-        if (inputProps.inputType === 'multiline text') {
+        if (props.inputType === 'multiline text') {
             inputJsx = <textarea {...stringInputProps} />
         }
 
         return (
-            <StyledDefaultStringInput {...props} error={!!error}>
+            <StyledDefaultStringInput {...props} error={!!errors}>
                 {inputJsx}
-                {!!error && !!error.errorMessage && error.errorMessage.length > 0 &&
-                    <span>{error.errorMessage}</span>}
+                <ErrorMessage errors={errors} name={props.name} render={({ message }) => <span>{message}</span>} />
             </StyledDefaultStringInput>
         );
     } catch {
