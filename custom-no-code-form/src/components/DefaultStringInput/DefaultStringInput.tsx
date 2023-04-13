@@ -38,7 +38,8 @@ export function DefaultStringInput(props: DefaultStringInputProps) {
                 <ErrorMessage errors={errors} name={props.name} render={({ message }) => <span>{message}</span>} />
             </StyledDefaultStringInput>
         );
-    } catch {
+    } catch (e) {
+        console.error(e);
         return (
             <StyledDefaultStringInput {...props} error={false}>
                 <input type="text" placeholder="Placeholder" />

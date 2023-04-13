@@ -55,22 +55,23 @@ export function CustomForm2(props: CustomForm2Props) {
         {} as any
     );
     console.log('scheme', scheme);
-    const {} = useForm({ resolver: zodResolver(z.object(scheme)) });
+    const {handleSubmit} = useForm({ resolver: zodResolver(z.object(scheme)) });
 
     const submit = (data: any) => {
-        fetch(props.sendTo, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8',
-            },
-            body: JSON.stringify(data),
-        })
-            .then(() => alert(props.messages.success))
-            .catch(() => alert(props.messages.error))
+        console.log(data);
+        // fetch(props.sendTo, {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json; charset=utf-8',
+        //     },
+        //     body: JSON.stringify(data),
+        // })
+        //     .then(() => alert(props.messages.success))
+        //     .catch(() => alert(props.messages.error))
     }
 
     return (
-        <form>
+        <form onSubmit={handleSubmit(submit)}>
             {props.inputs.map(input => input)}
         </form>
     );
