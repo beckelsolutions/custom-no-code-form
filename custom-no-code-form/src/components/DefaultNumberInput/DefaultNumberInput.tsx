@@ -17,7 +17,7 @@ export function DefaultNumberInput(props: DefaultNumberInputProps) {
         const { register, formState: { errors } } = useFormContext();
 
         const numberInputProps = {
-            ...register(props.name),
+            ...register(props.name, { valueAsNumber: true }),
             type: 'number',
             placeholder: props.label + (props.required ? " *" : ""),
         }
@@ -25,7 +25,8 @@ export function DefaultNumberInput(props: DefaultNumberInputProps) {
         return (
             <StyledDefaultNumberInput {...props} error={!!errors}>
                 <input {...numberInputProps} min={props.min} max={props.max} />
-                {!!errors && <ErrorMessage errors={errors} name={props.name} render={({ message }) => <span>{message}</span>} />}
+                {!!errors &&
+                    <ErrorMessage errors={errors} name={props.name} render={({ message }) => <span>{message}</span>} />}
             </StyledDefaultNumberInput>
         );
     } catch {

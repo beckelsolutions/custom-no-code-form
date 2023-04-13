@@ -8,6 +8,7 @@ export const getZodValidationTypeMethod = (
     invalidMessage?: string
 ) => {
     const defaultRequiredMessage = 'This field is required.';
+    const defaultInvalidMessage = 'This field has the wrong format.';
     switch (type) {
         case 'text':
             return required
@@ -27,8 +28,13 @@ export const getZodValidationTypeMethod = (
                 z.string().trim().optional()
         case 'number':
             return required
-                ? z.number({ required_error: requiredMessage ?? defaultRequiredMessage })
-                : z.number().optional()
+                ?
+                z.number({
+                    required_error: requiredMessage ?? defaultRequiredMessage,
+                    invalid_type_error: invalidMessage ?? defaultInvalidMessage
+                })
+                :
+                z.number().optional()
         case 'boolean':
             return required
                 ? z.boolean({ required_error: requiredMessage ?? defaultRequiredMessage })
@@ -40,7 +46,7 @@ export const getZodValidationTypeMethod = (
                     .string({ required_error: requiredMessage ?? defaultRequiredMessage })
                     .trim()
                     .min(1, { message: requiredMessage })
-                    .email({ message: invalidMessage ?? 'This format is invalid.' })
+                    .email({ message: invalidMessage ?? defaultInvalidMessage })
                 :
                 z.string().email().optional()
         case 'dropdown':
