@@ -4,8 +4,8 @@ import { DefaultInputStyle, InputInformation } from '../types';
 import { StyledDefaultNumberInput } from './DefaultNumberInput.style';
 
 export interface DefaultNumberInputProps extends DefaultInputStyle, InputInformation {
-    max: number;
-    min: number;
+    // max: number;
+    // min: number;
 }
 
 /**
@@ -24,7 +24,7 @@ export function DefaultNumberInput(props: DefaultNumberInputProps) {
 
         return (
             <StyledDefaultNumberInput {...props} error={!!errors}>
-                <input {...numberInputProps} min={props.min} max={props.max} />
+                <input {...numberInputProps} />
                 {!!errors &&
                     <ErrorMessage errors={errors} name={props.name} render={({ message }) => <span>{message}</span>} />}
             </StyledDefaultNumberInput>

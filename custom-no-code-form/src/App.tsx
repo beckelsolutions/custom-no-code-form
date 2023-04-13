@@ -92,8 +92,6 @@ function App() {
         name={'number1'}
         required={true}
         inputType={'number'}
-        min={0}
-        max={100}
         padding={'15px 15px'}
         gap={5}
         fillColor={'lightgray'}
