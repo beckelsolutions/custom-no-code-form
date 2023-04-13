@@ -1,7 +1,5 @@
-import { useTsController } from '@ts-react/form';
-import { ChangeEvent, useContext } from 'react';
-import { InputPropsCtx } from '../context';
-import { StyledDefaultStringInput } from '../DefaultStringInput/DefaultStringInput.style';
+import { ErrorMessage } from '@hookform/error-message';
+import { useFormContext } from 'react-hook-form';
 import { DefaultInputStyle, InputInformation } from '../types';
 import { StyledDefaultNumberInput } from './DefaultNumberInput.style';
 
@@ -16,27 +14,18 @@ export interface DefaultNumberInputProps extends DefaultInputStyle, InputInforma
  */
 export function DefaultNumberInput(props: DefaultNumberInputProps) {
     try {
-        const {
-            field: { name, onChange },
-            error
-        } = useTsController<number>();
-        const inputProps = useContext(InputPropsCtx)[name];
+        const { register, formState: { errors } } = useFormContext();
 
-        const stringInputProps = {
+        const numberInputProps = {
+            ...register(props.name),
             type: 'number',
-            name: name,
-            placeholder: inputProps.label + (inputProps.required ? " *" : ""),
-            onChange: (e: ChangeEvent<HTMLInputElement>) => {
-                const value = e.target.valueAsNumber;
-                onChange(value !== undefined && !isNaN(value) ? value : undefined)
-            }
+            placeholder: props.label + (props.required ? " *" : ""),
         }
 
         return (
-            <StyledDefaultNumberInput {...props} error={!!error}>
-                <input {...stringInputProps} min={props.min} max={props.max} />
-                {!!error && !!error.errorMessage && error.errorMessage.length > 0 &&
-                    <span>{error.errorMessage}</span>}
+            <StyledDefaultNumberInput {...props} error={!!errors}>
+                <input {...numberInputProps} min={props.min} max={props.max} />
+                {!!errors && <ErrorMessage errors={errors} name={props.name} render={({ message }) => <span>{message}</span>} />}
             </StyledDefaultNumberInput>
         );
     } catch {
