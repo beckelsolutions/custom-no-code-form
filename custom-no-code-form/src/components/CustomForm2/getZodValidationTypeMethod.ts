@@ -1,6 +1,5 @@
 import { z } from 'zod';
 import { InputTypes } from '../types';
-import { dropdownSchema } from './dropdownSchema';
 
 export const getZodValidationTypeMethod = (
     type: InputTypes,
@@ -8,35 +7,35 @@ export const getZodValidationTypeMethod = (
     requiredMessage?: string,
     invalidMessage?: string
 ) => {
-    console.log('type in zod validation', type);
+    const defaultRequiredMessage = 'This field is required.';
     switch (type) {
         case 'text':
             return required
-                ? z.string({ required_error: requiredMessage ?? 'This field is required.' })
+                ? z.string({ required_error: requiredMessage ?? defaultRequiredMessage })
                 : z.string().optional()
         case 'multiline text':
             return required
-                ? z.string({ required_error: requiredMessage ?? 'This field is required.' })
+                ? z.string({ required_error: requiredMessage ?? defaultRequiredMessage })
                 : z.string().optional()
         case 'number':
             return required
-                ? z.number({ required_error: requiredMessage ?? 'This field is required.' })
+                ? z.number({ required_error: requiredMessage ?? defaultRequiredMessage })
                 : z.number().optional()
         case 'boolean':
             return required
-                ? z.boolean({ required_error: requiredMessage ?? 'This field is required.' })
+                ? z.boolean({ required_error: requiredMessage ?? defaultRequiredMessage })
                 : z.boolean().optional()
         case 'e-mail':
             return required
                 ?
                 z
-                    .string({ required_error: requiredMessage ?? 'This field is required.' })
+                    .string({ required_error: requiredMessage ?? defaultRequiredMessage })
                     .email({ message: invalidMessage ?? 'This format is invalid.' })
                 :
                 z.string().email().optional()
         case 'dropdown':
             return required
-                ? dropdownSchema({ required_error: requiredMessage ?? 'This field is required.' })
+                ? z.string({ required_error: requiredMessage ?? defaultRequiredMessage })
                 : z.string().optional()
     }
 }
