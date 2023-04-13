@@ -28,6 +28,7 @@ export function CustomForm2(props: CustomForm2Props) {
     const scheme = props.inputs.reduce(
         (newScheme: any, currentInput) => {
             const inputProps = currentInput.props.children.props;
+            if (inputProps.inputType === 'button') return newScheme;
             if (inputProps.inputType === 'container') {
                 const subScheme = inputProps.inputs.reduce(
                     (s: any, currentSubInput: ReactElement) => {
