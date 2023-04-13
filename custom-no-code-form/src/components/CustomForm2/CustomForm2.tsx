@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { createTsForm } from '@ts-react/form';
 import React, { Children, cloneElement, ReactElement } from 'react';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import { z, ZodObject, ZodSchema } from 'zod';
 import { DynamicInputPropsObject, InputPropsCtx } from '../context';
 import { CustomForm2Style } from './CustomForm2.style';
@@ -55,7 +55,8 @@ export function CustomForm2(props: CustomForm2Props) {
         {} as any
     );
     console.log('scheme', scheme);
-    const {handleSubmit} = useForm({ resolver: zodResolver(z.object(scheme)) });
+    const formProvider = useForm({ resolver: zodResolver(z.object(scheme)) });
+    const handleSubmit = formProvider.handleSubmit;
 
     const submit = (data: any) => {
         console.log(data);
@@ -71,8 +72,10 @@ export function CustomForm2(props: CustomForm2Props) {
     }
 
     return (
-        <form onSubmit={handleSubmit(submit)}>
-            {props.inputs.map(input => input)}
-        </form>
+        <FormProvider {...formProvider}>
+            <form onSubmit={handleSubmit(submit)}>
+                {props.inputs.map(input => input)}
+            </form>
+        </FormProvider>
     );
 }
