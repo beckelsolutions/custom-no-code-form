@@ -71,7 +71,7 @@ export function CustomForm2(props: CustomForm2Props) {
         <FormProvider {...formProvider}>
             <form
                 onSubmit={handleSubmit(submit)}
-                style={{ display: 'flex', flexDirection: 'column', gap: props.style.gap }}
+                style={{ display: 'flex', flexDirection: 'column', gap: props.style.gap + 'px' }}
             >
                 {props.inputs.map(input => input)}
             </form>
