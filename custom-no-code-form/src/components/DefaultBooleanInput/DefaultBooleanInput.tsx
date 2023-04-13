@@ -1,6 +1,7 @@
+import { ErrorMessage } from '@hookform/error-message';
 import { useTsController } from '@ts-react/form';
 import { useContext } from 'react';
-import { InputPropsCtx } from '../context';
+import { useFormContext } from 'react-hook-form';
 import { InputInformation } from '../types';
 import { StyledDefaultBooleanInput } from './DefaultBooleanInput.style';
 
@@ -20,34 +21,25 @@ export interface DefaultBooleanInputProps extends InputInformation {
  */
 function DefaultBooleanInput(props: DefaultBooleanInputProps) {
     try {
-        const {
-            field: { onChange, value, name },
-            error,
-        } = useTsController<boolean>()
-        const inputProps = useContext(InputPropsCtx)[name];
+        const { register, formState: { errors } } = useFormContext();
 
         return (
             <StyledDefaultBooleanInput
                 {...props}
-                error={!!error}
-                onClick={() => onChange(value === true ? undefined : true)}
+                error={!!errors}
             >
-                <label>
-                    <input type="checkbox" checked={value} />
-                    {inputProps.label}
+                <label htmlFor={props.name}>
+                    <input {...register(props.name)} type='checkbox' id={props.name} />
+                    {props.label}
                 </label>
-                {!!error &&
-                    !!error.errorMessage &&
-                    error.errorMessage.length > 0 && (
-                        <span>{error.errorMessage}</span>
-                    )}
+                <ErrorMessage errors={errors} name={props.name} render={({ message }) => <span>{message}</span>} />
             </StyledDefaultBooleanInput>
         );
     } catch {
         return (
             <StyledDefaultBooleanInput {...props} error={false}>
-                <label>
-                    <input type="checkbox" checked={false} />
+                <label htmlFor={props.name}>
+                    <input type="checkbox" checked={false} id={props.name} />
                     Labeltext Example
                 </label>
                 <span>Errortext Example</span>
