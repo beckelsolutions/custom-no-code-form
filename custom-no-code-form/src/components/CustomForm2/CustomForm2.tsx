@@ -1,14 +1,9 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { createTsForm } from '@ts-react/form';
-import React, { Children, cloneElement, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { z, ZodObject, ZodSchema } from 'zod';
-import { DynamicInputPropsObject, InputPropsCtx } from '../context';
-import { CustomForm2Style } from './CustomForm2.style';
-import { InputInformationFromFramer, StyleInformationFromFramer } from './CustomForm2.types';
-import { dropdownSchema } from './dropdownSchema';
+import { z } from 'zod';
+import { StyleInformationFromFramer } from './CustomForm2.types';
 import { getZodValidationTypeMethod } from './getZodValidationTypeMethod';
-import { zodSchema } from './zodSchema';
 
 interface CustomForm2Props {
     inputs: ReactElement[]
