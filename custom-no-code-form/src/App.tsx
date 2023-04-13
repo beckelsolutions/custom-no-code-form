@@ -11,6 +11,7 @@ import { DefaultStringInput } from './components/DefaultStringInput/DefaultStrin
 function App() {
     // dummy props, will be set by framer user.
     const textInput: ReactElement = <DefaultStringInput
+        label={'Label'}
         name={'string1'}
         required={true}
         inputType={'text'}
@@ -87,6 +88,7 @@ function App() {
     />;
 
     const numberInput: ReactElement = <DefaultNumberInput
+        label={'Label'}
         name={'number1'}
         required={true}
         inputType={'number'}
@@ -165,6 +167,7 @@ function App() {
     />;
 
     const dropdownInput = <DefaultDropdownInput
+        label={'Label'}
         name={'dropdown1'}
         required={true}
         inputType={'dropdown'}
@@ -242,6 +245,7 @@ function App() {
     />
 
     const booleanInput = <DefaultBooleanInput
+        label={'Label'}
         name={'boolean1'}
         required={true}
         inputType={'boolean'}
@@ -255,6 +259,7 @@ function App() {
     />
 
     const button = <DefaultButton
+        label={'Label'}
         name={'button'}
         required={true}
         inputType={'button'}
