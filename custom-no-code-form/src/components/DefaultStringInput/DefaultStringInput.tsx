@@ -14,35 +14,28 @@ export interface DefaultStringInputProps extends DefaultInputStyle, InputInforma
  */
 export function DefaultStringInput(props: DefaultStringInputProps) {
     try {
-        // const {
-        //     field: { name, onChange },
-        //     error
-        // } = useTsController<string>();
-        // const inputProps = useContext(InputPropsCtx)[name];
         const { register, formState: { errors } } = useFormContext();
 
         const stringInputProps = {
             ...register(props.name),
-            type: "text",
-            placeholder: props.label + (props.required ? " *" : ""),
+            type: 'text',
+            placeholder: props.label + (props.required ? ' *' : ''),
         }
 
-        let inputJsx = <input {...stringInputProps} />;
-        if (props.inputType === 'multiline text') {
-            inputJsx = <textarea {...stringInputProps} />
-        }
+        // if (props.inputType === 'multiline text') {
+        //     inputJsx = <textarea {...stringInputProps} />
+        // }
 
         return (
             <StyledDefaultStringInput {...props} error={!!errors}>
-                {inputJsx}
+                <input {...stringInputProps} />
                 {!!errors && <ErrorMessage errors={errors} name={props.name} render={({ message }) => <span>{message}</span>} />}
             </StyledDefaultStringInput>
         );
-    } catch (e) {
-        console.error(e);
+    } catch {
         return (
             <StyledDefaultStringInput {...props} error={false}>
-                <input type="text" placeholder="Placeholder" />
+                <input type='text' placeholder='Placeholder' />
                 <span>Errortext Example</span>
             </StyledDefaultStringInput>
         )
