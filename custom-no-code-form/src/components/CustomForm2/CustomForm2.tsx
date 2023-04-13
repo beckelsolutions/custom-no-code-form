@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { StyleInformationFromFramer } from './CustomForm2.types';
@@ -50,9 +50,15 @@ export function CustomForm2(props: CustomForm2Props) {
         },
         {} as any
     );
-    console.log('scheme', scheme);
+
+    // console.log('scheme', scheme);
+
     const formProvider = useForm({ resolver: zodResolver(z.object(scheme)) });
     const handleSubmit = formProvider.handleSubmit;
+
+    useEffect(() => {
+        console.log('formState', formProvider.formState);
+    }, [formProvider.formState]);
 
     const submit = (data: any) => {
         console.log(data);
