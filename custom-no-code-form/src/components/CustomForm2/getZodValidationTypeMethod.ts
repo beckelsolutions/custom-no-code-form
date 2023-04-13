@@ -11,12 +11,20 @@ export const getZodValidationTypeMethod = (
     switch (type) {
         case 'text':
             return required
-                ? z.string({ required_error: requiredMessage ?? defaultRequiredMessage })
-                : z.string().optional()
+                ?
+                z.string({ required_error: requiredMessage ?? defaultRequiredMessage })
+                    .trim()
+                    .min(1, { message: requiredMessage })
+                :
+                z.string().trim().optional()
         case 'multiline text':
             return required
-                ? z.string({ required_error: requiredMessage ?? defaultRequiredMessage })
-                : z.string().optional()
+                ?
+                z.string({ required_error: requiredMessage ?? defaultRequiredMessage })
+                    .trim()
+                    .min(1, { message: requiredMessage })
+                :
+                z.string().trim().optional()
         case 'number':
             return required
                 ? z.number({ required_error: requiredMessage ?? defaultRequiredMessage })
@@ -30,13 +38,19 @@ export const getZodValidationTypeMethod = (
                 ?
                 z
                     .string({ required_error: requiredMessage ?? defaultRequiredMessage })
+                    .trim()
+                    .min(1, { message: requiredMessage })
                     .email({ message: invalidMessage ?? 'This format is invalid.' })
                 :
                 z.string().email().optional()
         case 'dropdown':
             return required
-                ? z.string({ required_error: requiredMessage ?? defaultRequiredMessage })
-                : z.string().optional()
+                ?
+                z.string({ required_error: requiredMessage ?? defaultRequiredMessage })
+                    .trim()
+                    .min(1, { message: requiredMessage })
+                :
+                z.string().trim().optional()
     }
 }
 
