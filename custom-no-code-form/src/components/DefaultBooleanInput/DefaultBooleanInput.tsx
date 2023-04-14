@@ -32,7 +32,8 @@ function DefaultBooleanInput(props: DefaultBooleanInputProps) {
                     <input {...register(props.name)} type='checkbox' id={props.name} />
                     {props.label}
                 </label>
-                <ErrorMessage errors={errors} name={props.name} render={({ message }) => <span>{message}</span>} />
+                {!!errors &&
+                    <ErrorMessage errors={errors} name={props.name} render={({ message }) => <span>{message}</span>} />}
             </StyledDefaultBooleanInput>
         );
     } catch {

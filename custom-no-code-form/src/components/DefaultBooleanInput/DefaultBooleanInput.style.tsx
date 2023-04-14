@@ -36,7 +36,7 @@ const StyledDefaultBooleanInput = styled.div<StyledDefaultBooleanInputProps>`
     font-family: ${(props) => props.font.font};
     font-size: ${(props) => props.font.size}px;
     margin-left: 5px;
-    color: ${(props) => props.font.errorColor};
+    color: ${props => props.font.errorColor};
   }
 `;
 
