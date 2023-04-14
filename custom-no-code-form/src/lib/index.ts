@@ -1,4 +1,5 @@
 export { DefaultStringInput } from "../components/DefaultStringInput/DefaultStringInput";
+export { DefaultEMailInput } from "../components/DefaultEMailInput/DefaultEMailInput";
 export { DefaultNumberInput } from "../components/DefaultNumberInput/DefaultNumberInput";
 export { DefaultDropdownInput } from "../components/DefaultDropdownInput/DefaultDropdownInput";
 export { DefaultBooleanInput } from "../components/DefaultBooleanInput/DefaultBooleanInput";
