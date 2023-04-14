@@ -1,5 +1,7 @@
+import { ErrorMessage } from '@hookform/error-message';
 import { useTsController } from '@ts-react/form';
 import { useContext } from 'react';
+import { useFormContext } from 'react-hook-form';
 import { InputPropsCtx } from '../context';
 import { DefaultInputStyle, InputInformation } from '../types';
 import { StyledDefaultDropdownInput } from './DefaultDropdownInput.style';
@@ -14,26 +16,19 @@ export interface DefaultDropdownInputProps extends DefaultInputStyle, InputInfor
  */
 function DefaultDropdownInput(props: DefaultDropdownInputProps) {
     try {
-        const {
-            field: { value, name, onChange },
-            error
-        } = useTsController<string>();
-        const inputProps = useContext(InputPropsCtx)[name];
+        const { register, getValues, formState: { errors } } = useFormContext();
 
         return (
-            <StyledDefaultDropdownInput {...props} error={!!error}>
-                <select
-                    value={!!value ? value : undefined}
-                    onChange={e => onChange(e.target.value)}
-                >
-                    {!value && <option value={undefined}>{inputProps.label}</option>}
+            <StyledDefaultDropdownInput {...props} error={!!errors}>
+                <select {...register(props.name)}>
+                    {!getValues(props.name) && <option value={undefined}>{props.label}</option>}
                     {props.options.map(e => (
                         <option key={e} value={e}>
                             {e}
                         </option>
                     ))}
                 </select>
-                <span>{error?.errorMessage && error.errorMessage}</span>
+                {!!errors && <ErrorMessage errors={errors} name={props.name} render={({ message }) => <span>{message}</span>} />}
             </StyledDefaultDropdownInput>
         );
     } catch {

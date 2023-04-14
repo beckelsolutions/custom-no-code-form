@@ -56,7 +56,7 @@ export const getZodValidationTypeMethod = (
                 ?
                 z.string({ required_error: requiredMessage ?? defaultRequiredMessage })
                     .trim()
-                    .min(1, { message: requiredMessage })
+                    .min(1, { message: requiredMessage ?? defaultRequiredMessage })
                 :
                 z.string().trim().optional()
     }
