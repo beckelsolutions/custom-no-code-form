@@ -41,7 +41,8 @@ export const getZodValidationTypeMethod = (
                 z.literal<boolean>(true,
                     {
                         required_error: requiredMessage ?? defaultRequiredMessage,
-                        invalid_type_error: requiredMessage ?? defaultRequiredMessage
+                        invalid_type_error: requiredMessage ?? defaultRequiredMessage,
+                        errorMap: () => ({ message: requiredMessage ?? defaultRequiredMessage })
                     })
                 :
                 z.boolean().optional()
