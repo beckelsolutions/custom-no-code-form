@@ -8,13 +8,11 @@ interface StyledDefaultStringInputProps extends DefaultInputStyle {
 
 const StyledDefaultStringInput = styled.div<StyledDefaultStringInputProps>`
   ${SharedWrapperInputStyle}
-  
-  //> textarea {
-  //  resize: vertical;
-  //}
-
-  > input, textarea {
-    ${SharedInputStyle}
+    //> textarea {
+    //  resize: vertical;
+    //}
+  > input {
+       ${SharedInputStyle}
   }
 `;
 

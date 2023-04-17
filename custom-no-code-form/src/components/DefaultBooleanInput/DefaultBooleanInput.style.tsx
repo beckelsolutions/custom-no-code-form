@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { DefaultInputStyle } from '../types';
 
 interface StyledDefaultBooleanInputProps {
     width: number;

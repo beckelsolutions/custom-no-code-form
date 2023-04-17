@@ -1,6 +1,4 @@
 import { ErrorMessage } from '@hookform/error-message';
-import { useTsController } from '@ts-react/form';
-import { useContext } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { InputInformation } from '../types';
 import { StyledDefaultBooleanInput } from './DefaultBooleanInput.style';

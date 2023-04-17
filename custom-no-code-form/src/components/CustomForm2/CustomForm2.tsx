@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import React, { ReactElement, useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { StyledCustomForm } from './CustomForm2.style';
 import { StyleInformationFromFramer } from './CustomForm2.types';
 import { getZodValidationTypeMethod } from './getZodValidationTypeMethod';
 
@@ -75,12 +76,12 @@ export function CustomForm2(props: CustomForm2Props) {
 
     return (
         <FormProvider {...formProvider}>
-            <form
+            <StyledCustomForm
                 onSubmit={handleSubmit(submit)}
-                style={{ display: 'flex', flexDirection: 'column', gap: props.style.gap + 'px' }}
+                gap={props.style.gap}
             >
                 {props.inputs.map(input => input)}
-            </form>
+            </StyledCustomForm>
         </FormProvider>
     );
 }

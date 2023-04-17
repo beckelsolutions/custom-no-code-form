@@ -1,8 +1,5 @@
 import { ErrorMessage } from '@hookform/error-message';
-import { useTsController } from '@ts-react/form';
-import { ChangeEvent, useContext } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { InputPropsCtx } from '../context';
 import { StyledDefaultStringInput } from './DefaultStringInput.style';
 import { DefaultInputStyle, InputInformation } from '../types';
 
@@ -27,7 +24,7 @@ export function DefaultStringInput(props: DefaultStringInputProps) {
         // }
 
         return (
-            <StyledDefaultStringInput {...props} error={!!errors}>
+            <StyledDefaultStringInput {...props} error={!!errors[props.name]}>
                 <input {...stringInputProps} />
                 {!!errors && <ErrorMessage errors={errors} name={props.name} render={({ message }) => <span>{message}</span>} />}
             </StyledDefaultStringInput>
