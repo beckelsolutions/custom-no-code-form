@@ -26,7 +26,8 @@ export function DefaultStringInput(props: DefaultStringInputProps) {
         return (
             <StyledDefaultStringInput {...props} error={!!errors[props.name]}>
                 <input {...stringInputProps} />
-                {!!errors && <ErrorMessage errors={errors} name={props.name} render={({ message }) => <span>{message}</span>} />}
+                {!!errors[props.name] &&
+                    <ErrorMessage errors={errors} name={props.name} render={({ message }) => <span>{message}</span>} />}
             </StyledDefaultStringInput>
         );
     } catch {

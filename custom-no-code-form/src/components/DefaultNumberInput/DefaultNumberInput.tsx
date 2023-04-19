@@ -23,9 +23,9 @@ export function DefaultNumberInput(props: DefaultNumberInputProps) {
         }
 
         return (
-            <StyledDefaultNumberInput {...props} error={!!errors}>
+            <StyledDefaultNumberInput {...props} error={!!errors[props.name]}>
                 <input {...numberInputProps} />
-                {!!errors &&
+                {!!errors[props.name] &&
                     <ErrorMessage errors={errors} name={props.name} render={({ message }) => <span>{message}</span>} />}
             </StyledDefaultNumberInput>
         );
