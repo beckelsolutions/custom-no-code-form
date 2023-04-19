@@ -52,14 +52,8 @@ export function CustomForm2(props: CustomForm2Props) {
         {} as any
     );
 
-    // console.log('scheme', scheme);
-
     const formProvider = useForm({ resolver: zodResolver(z.object(scheme)) });
     const handleSubmit = formProvider.handleSubmit;
-
-    useEffect(() => {
-        console.log('formState', formProvider.formState);
-    }, [formProvider.formState]);
 
     const submit = (data: any) => {
         console.log(data);
