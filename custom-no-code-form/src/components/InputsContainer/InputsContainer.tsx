@@ -4,6 +4,8 @@ import { StyledInputsContainer } from './InputsContainer.style';
 
 interface InputsContainerProps extends InputInformation {
     inputs: ReactElement[];
+    alignItems: string;
+    justifyContent: string;
     gap: number;
 }
 
