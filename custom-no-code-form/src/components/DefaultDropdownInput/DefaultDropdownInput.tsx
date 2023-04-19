@@ -16,16 +16,17 @@ function DefaultDropdownInput(props: DefaultDropdownInputProps) {
         const { register, getValues, formState: { errors } } = useFormContext();
 
         return (
-            <StyledDefaultDropdownInput {...props} error={!!errors}>
+            <StyledDefaultDropdownInput {...props} error={!!errors[props.name]}>
                 <select {...register(props.name)}>
-                    {!getValues(props.name) && <option value={undefined}>{props.label}</option>}
+                    <option value={''} disabled selected>{props.label}</option>
                     {props.options.map(e => (
                         <option key={e} value={e}>
                             {e}
                         </option>
                     ))}
                 </select>
-                {!!errors && <ErrorMessage errors={errors} name={props.name} render={({ message }) => <span>{message}</span>} />}
+                {!!errors[props.name] &&
+                    <ErrorMessage errors={errors} name={props.name} render={({ message }) => <span>{message}</span>} />}
             </StyledDefaultDropdownInput>
         );
     } catch {
