@@ -57,15 +57,15 @@ export function CustomForm2(props: CustomForm2Props) {
 
     const submit = (data: any) => {
         console.log(data);
-        // fetch(props.sendTo, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json; charset=utf-8',
-        //     },
-        //     body: JSON.stringify(data),
-        // })
-        //     .then(() => alert(props.messages.success))
-        //     .catch(() => alert(props.messages.error))
+        fetch(props.sendTo, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+            },
+            body: JSON.stringify(data),
+        })
+            .then(() => alert(props.messages.success))
+            .catch(() => alert(props.messages.error))
     }
 
     return (
