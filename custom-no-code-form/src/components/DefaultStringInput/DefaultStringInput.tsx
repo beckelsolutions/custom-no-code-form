@@ -33,7 +33,7 @@ export function DefaultStringInput(props: DefaultStringInputProps) {
     } catch {
         return (
             <StyledDefaultStringInput {...props} error={false}>
-                <input type='text' placeholder='Placeholder' />
+                <input type='text' placeholder={props.label} />
                 <span>Errortext Example</span>
             </StyledDefaultStringInput>
         )

@@ -33,7 +33,7 @@ function DefaultDropdownInput(props: DefaultDropdownInputProps) {
         return (
             <StyledDefaultDropdownInput {...props} error={false}>
                 <select value={undefined}>
-                    <option value={undefined}>Placeholder</option>
+                    <option value={undefined}>{props.label}</option>
                     {props.options.map(e => (
                         <option key={e} value={e}>
                             {e}

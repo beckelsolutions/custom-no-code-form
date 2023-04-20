@@ -24,7 +24,7 @@ export function DefaultTextareaInput(props: DefaultTextareaInputProps) {
     } catch {
         return (
             <StyledDefaultTextareaInput {...props} error={false}>
-                <textarea placeholder='Placeholder' />
+                <textarea placeholder={props.label} />
                 <span>Errortext Example</span>
             </StyledDefaultTextareaInput>
         )

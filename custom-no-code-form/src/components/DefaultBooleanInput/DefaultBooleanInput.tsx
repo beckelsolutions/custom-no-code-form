@@ -39,7 +39,7 @@ function DefaultBooleanInput(props: DefaultBooleanInputProps) {
             <StyledDefaultBooleanInput {...props} error={false}>
                 <label htmlFor={props.name}>
                     <input type="checkbox" checked={false} id={props.name} />
-                    Labeltext Example
+                    {props.label}
                 </label>
                 <span>Errortext Example</span>
             </StyledDefaultBooleanInput>

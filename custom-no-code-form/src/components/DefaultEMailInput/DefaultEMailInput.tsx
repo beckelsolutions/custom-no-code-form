@@ -29,7 +29,7 @@ export function DefaultEMailInput(props: DefaultEMailInputProps) {
     } catch {
         return (
             <StyledDefaultStringInput {...props} error={false}>
-                <input type='email' placeholder='Placeholder' />
+                <input type='email' placeholder={props.label} />
                 <span>Errortext Example</span>
             </StyledDefaultStringInput>
         )

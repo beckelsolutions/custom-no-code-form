@@ -32,7 +32,7 @@ export function DefaultNumberInput(props: DefaultNumberInputProps) {
     } catch {
         return (
             <StyledDefaultNumberInput {...props} error={false}>
-                <input type='number' placeholder='Placeholder' />
+                <input type='number' placeholder={props.label} />
                 <span>Errortext Example</span>
             </StyledDefaultNumberInput>
         )
