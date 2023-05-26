@@ -33,8 +33,8 @@ export function CustomForm(props: CustomForm2Props) {
                         s[subInputProps.name] = getZodValidationTypeMethod(
                             subInputProps.inputType,
                             subInputProps.required,
-                            subInputProps.requiredMessage,
-                            subInputProps.invalidMessage
+                            subInputProps.requiredErrorMessage,
+                            subInputProps.invalidErrorMessage
                         );
                         return s;
                     },
@@ -45,8 +45,8 @@ export function CustomForm(props: CustomForm2Props) {
             newScheme[inputProps.name] = getZodValidationTypeMethod(
                 inputProps.inputType,
                 inputProps.required,
-                inputProps.requiredMessage,
-                inputProps.invalidMessage
+                inputProps.requiredErrorMessage,
+                inputProps.invalidErrorMessage
             );
             return newScheme;
         },
