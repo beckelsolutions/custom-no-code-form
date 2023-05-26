@@ -1,7 +1,6 @@
 import { ReactElement } from 'react';
 import StyledApp from './App.style';
 import { CustomForm } from './components/CustomForm/CustomForm';
-import { CustomForm } from './components/CustomForm/CustomForm';
 import { DefaultBooleanInput } from './components/DefaultBooleanInput/DefaultBooleanInput';
 import { DefaultButton } from './components/DefaultButton/DefaultButton';
 import { DefaultDropdownInput } from './components/DefaultDropdownInput/DefaultDropdownInput';
