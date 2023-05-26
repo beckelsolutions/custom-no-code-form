@@ -19,10 +19,6 @@ export function DefaultStringInput(props: DefaultStringInputProps) {
             placeholder: props.label + (props.required ? ' *' : ''),
         }
 
-        // if (props.inputType === 'multiline text') {
-        //     inputJsx = <textarea {...stringInputProps} />
-        // }
-
         return (
             <StyledDefaultStringInput {...props} error={!!errors[props.name]}>
                 <input {...stringInputProps} />
