@@ -1,38 +1,64 @@
 import { z } from 'zod';
 import { InputTypes } from '../types';
-import { dropdownSchema } from './dropdownSchema';
 
 export const getZodValidationTypeMethod = (
     type: InputTypes,
     required: boolean,
-    errorMessage: string,
-    emailInvalidMessage: string
+    requiredMessage?: string,
+    invalidMessage?: string
 ) => {
+    const defaultRequiredMessage = 'This field is required.';
+    const defaultInvalidMessage = 'This field has the wrong format.';
     switch (type) {
         case 'text':
             return required
-                ? z.string({ required_error: errorMessage })
-                : z.string().optional()
+                ?
+                z.string({ required_error: requiredMessage ?? defaultRequiredMessage })
+                    .trim()
+                    .min(1, { message: requiredMessage })
+                :
+                z.string().trim().optional()
         case 'multiline text':
             return required
-                ? z.string({ required_error: errorMessage })
-                : z.string().optional()
+                ?
+                z.string({ required_error: requiredMessage ?? defaultRequiredMessage })
+                    .trim()
+                    .min(1, { message: requiredMessage })
+                :
+                z.string().trim().optional()
         case 'number':
             return required
-                ? z.number({ required_error: errorMessage })
-                : z.number().optional()
+                ?
+                z.number({
+                    required_error: requiredMessage ?? defaultRequiredMessage,
+                    invalid_type_error: invalidMessage ?? defaultInvalidMessage
+                })
+                :
+                z.number().optional()
         case 'boolean':
             return required
-                ? z.boolean({ required_error: errorMessage })
-                : z.boolean().optional()
+                ?
+                z.literal<boolean>(true, { errorMap: () => ({ message: requiredMessage ?? defaultRequiredMessage }) })
+                :
+                z.boolean().optional()
         case 'e-mail':
             return required
-                ? z.string({ required_error: errorMessage }).email({ message: emailInvalidMessage })
-                : z.string().email().optional()
+                ?
+                z
+                    .string({ required_error: requiredMessage ?? defaultRequiredMessage })
+                    .trim()
+                    .min(1, { message: requiredMessage })
+                    .email({ message: invalidMessage ?? defaultInvalidMessage })
+                :
+                z.string().email().optional()
         case 'dropdown':
             return required
-                ? dropdownSchema({ required_error: errorMessage })
-                : z.string().optional()
+                ?
+                z.string({ required_error: requiredMessage ?? defaultRequiredMessage })
+                    .trim()
+                    .min(1, { message: requiredMessage ?? defaultRequiredMessage })
+                :
+                z.string().trim().optional()
     }
 }
 

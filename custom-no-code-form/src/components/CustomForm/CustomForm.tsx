@@ -1,19 +1,13 @@
-import { createTsForm } from '@ts-react/form';
-import { Children, cloneElement, ReactElement } from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import React, { ReactElement, useEffect } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { DynamicInputPropsObject, InputPropsCtx } from '../context';
-import { CustomFormStyle } from './CustomForm.style';
-import { InputInformationFromFramer, StyleInformationFromFramer } from './CustomForm.types';
-import { dropdownSchema } from './dropdownSchema';
-import { zodSchema } from './zodSchema';
+import { StyledCustomForm } from './CustomForm.style';
+import { StyleInformationFromFramer } from './CustomForm.types';
+import { getZodValidationTypeMethod } from './getZodValidationTypeMethod';
 
-interface CustomFormProps {
-    textInput: ReactElement;
-    numberInput: ReactElement;
-    booleanInput: ReactElement;
-    dropdownInput: ReactElement;
-    submitButton: ReactElement;
-    inputs: InputInformationFromFramer[]
+interface CustomForm2Props {
+    inputs: ReactElement[]
     style: StyleInformationFromFramer;
     sendTo: string;
     messages: {
@@ -26,20 +20,49 @@ interface CustomFormProps {
  * @framerSupportedLayoutWidth any
  * @framerSupportedLayoutHeight any
  */
-export function CustomForm(props: CustomFormProps) {
-    const inputMapping = [
-        [z.string(), () => props.textInput] as const,
-        [z.boolean(), () => props.booleanInput] as const,
-        [z.number(), () => props.numberInput] as const,
-        [dropdownSchema({ required_error: '' }), () => props.dropdownInput] as const
-    ] as const;
-    const MyForm = createTsForm(inputMapping);
+export function CustomForm(props: CustomForm2Props) {
+    const scheme = props.inputs.reduce(
+        (newScheme: any, currentInput) => {
+            const inputProps = currentInput.props.children.props;
+            if (inputProps.inputType === 'button') return newScheme;
+            if (inputProps.inputType === 'container') {
+                const subScheme = inputProps.inputs.reduce(
+                    (s: any, currentSubInput: ReactElement) => {
+                        const subInputProps = currentSubInput.props.children.props;
+                        if (subInputProps.inputType === 'button') return s;
+                        s[subInputProps.name] = getZodValidationTypeMethod(
+                            subInputProps.inputType,
+                            subInputProps.required,
+                            subInputProps.requiredMessage,
+                            subInputProps.invalidMessage
+                        );
+                        return s;
+                    },
+                    {}
+                );
+                return { ...newScheme, ...subScheme };
+            }
+            newScheme[inputProps.name] = getZodValidationTypeMethod(
+                inputProps.inputType,
+                inputProps.required,
+                inputProps.requiredMessage,
+                inputProps.invalidMessage
+            );
+            return newScheme;
+        },
+        {} as any
+    );
+
+    const formProvider = useForm({ resolver: zodResolver(z.object(scheme)) });
+    const handleSubmit = formProvider.handleSubmit;
 
     const submit = (data: any) => {
+        console.log(data);
         fetch(props.sendTo, {
-            method: "POST",
+            method: 'POST',
             headers: {
-                "Content-Type": "application/json; charset=utf-8",
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             },
             body: JSON.stringify(data),
         })
@@ -47,35 +70,14 @@ export function CustomForm(props: CustomFormProps) {
             .catch(() => alert(props.messages.error))
     }
 
-    const inputProps: DynamicInputPropsObject = props.inputs.reduce(
-        (newInputProps: DynamicInputPropsObject, currentInput) => {
-            newInputProps[currentInput.name] = {
-                label: currentInput.label,
-                inputType: currentInput.inputType,
-                required: currentInput.required
-            }
-            return newInputProps;
-        },
-        {} as DynamicInputPropsObject
-    );
-
     return (
-        <div>
-            <InputPropsCtx.Provider value={inputProps}>
-                <MyForm
-                    schema={zodSchema(props.inputs)}
-                    onSubmit={submit}
-                    renderAfter={() =>
-                        Children.map(props.submitButton, (child, index) => {
-                            return cloneElement(child, {
-                                key: index,
-                                type: "submit",
-                            })
-                        })
-                    }
-                    formProps={{ style: { ...CustomFormStyle, gap: props.style.gap } }}
-                />
-            </InputPropsCtx.Provider>
-        </div>
+        <FormProvider {...formProvider}>
+            <StyledCustomForm
+                onSubmit={handleSubmit(submit)}
+                gap={props.style.gap}
+            >
+                {props.inputs.map(input => input)}
+            </StyledCustomForm>
+        </FormProvider>
     );
 }

@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import StyledApp from './App.style';
 import { CustomForm } from './components/CustomForm/CustomForm';
-import { CustomForm2 } from './components/CustomForm2/CustomForm2';
+import { CustomForm } from './components/CustomForm/CustomForm';
 import { DefaultBooleanInput } from './components/DefaultBooleanInput/DefaultBooleanInput';
 import { DefaultButton } from './components/DefaultButton/DefaultButton';
 import { DefaultDropdownInput } from './components/DefaultDropdownInput/DefaultDropdownInput';
@@ -290,7 +290,7 @@ function App() {
 
     return (
         <StyledApp>
-            <CustomForm2
+            <CustomForm
                 inputs={[textInput, numberInput, booleanInput]}
                 style={{ gap: 15 }}
                 sendTo={''}
