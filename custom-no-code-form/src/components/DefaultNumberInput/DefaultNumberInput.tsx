@@ -16,6 +16,9 @@ export function DefaultNumberInput(props: DefaultNumberInputProps) {
     try {
         const { register, formState: { errors } } = useFormContext();
 
+        console.log('in number input req: ', props.requiredErrorMessage)
+        console.log('in number input invalid: ', props.invalidErrorMessage)
+
         const numberInputProps = {
             ...register(props.name, { valueAsNumber: true }),
             type: 'number',

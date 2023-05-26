@@ -21,6 +21,9 @@ function DefaultBooleanInput(props: DefaultBooleanInputProps) {
     try {
         const { register, formState: { errors } } = useFormContext();
 
+        console.log('in boolean input req: ', props.requiredErrorMessage)
+        console.log('in boolean input invalid: ', props.invalidErrorMessage)
+
         return (
             <StyledDefaultBooleanInput
                 {...props}
