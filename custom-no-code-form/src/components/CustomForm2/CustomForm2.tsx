@@ -29,6 +29,7 @@ export function CustomForm2(props: CustomForm2Props) {
                 const subScheme = inputProps.inputs.reduce(
                     (s: any, currentSubInput: ReactElement) => {
                         const subInputProps = currentSubInput.props.children.props;
+                        if (subInputProps.inputType === 'button') return s;
                         s[subInputProps.name] = getZodValidationTypeMethod(
                             subInputProps.inputType,
                             subInputProps.required,
@@ -60,7 +61,8 @@ export function CustomForm2(props: CustomForm2Props) {
         fetch(props.sendTo, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json; charset=utf-8',
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             },
             body: JSON.stringify(data),
         })
