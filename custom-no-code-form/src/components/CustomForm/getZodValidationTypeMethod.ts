@@ -27,6 +27,8 @@ export const getZodValidationTypeMethod = (
                 :
                 z.string().trim().optional()
         case 'number':
+            console.log('bei number required: ', requiredMessage);
+            console.log('bei number invalid: ', invalidMessage);
             return required
                 ?
                 z.number({
@@ -36,6 +38,8 @@ export const getZodValidationTypeMethod = (
                 :
                 z.number().optional()
         case 'boolean':
+            console.log('bei boolean required: ', requiredMessage);
+            console.log('bei boolean invalid: ', invalidMessage);
             return required
                 ?
                 z.literal<boolean>(true, { errorMap: () => ({ message: requiredMessage ?? defaultRequiredMessage }) })
